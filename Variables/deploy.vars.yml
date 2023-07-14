@@ -8,4 +8,6 @@ variables:
   - name: Deployment.Mode
     value: 'Incremental'
   - name: Deployment.BicepFile
-    value: 
+    value: ../Infrastucture/main.bicep
+  - name: Deployment.BicepParameterFile
+    value: ../Infrastucture/Parameters/main.parameters.json

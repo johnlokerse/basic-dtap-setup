@@ -31,6 +31,6 @@ jobs:
           resourceGroupName: ${{ parameters.resourceGroupName }}
           location: $(Deployment.Location)
           templateLocation: 'Linked artifact'
-          csmFile: '$(templateFile)'
-          overrideParameters: '-storageAccountType Standard_LRS'
-          deploymentMode: 'Incremental'
+          csmFile: $(Deployment.BicepFile)
+          csmParametersFile: $(Deployment.BicepParameterFile)
+          deploymentMode: $(Deployment.Mode)
