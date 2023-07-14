@@ -1,0 +1,36 @@
+parameters:
+  - name: 'environment'
+    type: string
+  - name: 'deploymentNumber'
+    type: string
+  - name: 'serviceConnectionName'
+    type: string
+  - name: 'resourceGroupName'
+    type: string
+
+jobs:
+  - job: Set_Variables
+    displayName: 'Set pipeline variable'
+    steps:
+      - template: set-variables.yml
+  - job: Search_and_Replace
+    displayName: 'Search and replace parameters'
+    steps:
+      - template: search-and-replace.yml
+      parameters:
+        RootDirectory: '../Infrastructure/Parameters/'
+        TargetFiles: '../Infrastructure/Parameters/*.parameters.json'
+  - job: Deploy Infrastructure
+    displayName: Deploy Infrastructure to Azure
+    steps:
+      - task: AzureResourceManagerTemplateDeployment@3
+        inputs:
+          deploymentScope: $(Deployment.Scope)
+          azureResourceManagerConnection: ${{ parameters.serviceConnectionName }}
+          action: $(Deployment.Location)
+          resourceGroupName: ${{ parameters.resourceGroupName }}
+          location: $(Deployment.Location)
+          templateLocation: 'Linked artifact'
+          csmFile: '$(templateFile)'
+          overrideParameters: '-storageAccountType Standard_LRS'
+          deploymentMode: 'Incremental'

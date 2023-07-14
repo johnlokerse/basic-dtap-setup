@@ -1,0 +1,13 @@
+trigger: none
+
+variables:
+  - template: ../Variables/deploy.vars.yml
+
+
+stages:
+  - stage: Development
+    displayName: "Deploy to development"
+    jobs:
+      - templates: Templates/environment.yml
+        parameters:
+          

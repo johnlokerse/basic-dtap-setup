@@ -1,0 +1,11 @@
+variables:
+  - name: Deployment.Location
+    value: 'westeurope'
+  - name: Deployment.Action
+    value: 'Create Or Update Resource Group'
+  - name: Deployment.Scope
+    value: 'Resource Group'
+  - name: Deployment.Mode
+    value: 'Incremental'
+  - name: Deployment.BicepFile
+    value: 

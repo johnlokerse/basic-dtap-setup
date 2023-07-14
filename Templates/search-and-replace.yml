@@ -1,0 +1,23 @@
+parameters:
+- name: RootDirectory
+  type: string
+  default: "./Parameters/"
+- name: TargetFiles
+  type: string
+  default: "**/*.parameters.json"
+
+steps:
+- task: replacetokens@5
+  displayName: Replace Tokens
+  inputs:
+    rootDirectory: ${{ parameters.RootDirectory }}
+    targetFiles: ${{ parameters.TargetFiles }}
+    tokenPattern: "default" # Default pattern: #{...}#
+    encoding: auto
+    writeBOM: true
+    enableRecursion: false
+    useLegacyPattern: false
+    enableTelemetry: false
+    verbosity: detailed
+    actionOnMissing: 'fail'
+    actionOnNoFiles: 'fail'

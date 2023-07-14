@@ -1,0 +1,7 @@
+jobs:
+  - job: Set_Pipeline_Variables
+    displayName: 'Set Pipeline Variables'
+    steps:
+      powershell: |
+        Write-Output "##[Command]Set <insert variable> on the pipeline"
+        Write-Output "##vso[task.setvariable variable=key]value"
