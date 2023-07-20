@@ -55,3 +55,9 @@ deploy --> |contains| tstStage(tst stage) -->|Tst parameterized values| environm
 deploy --> |contains| accStage(acc stage) -->|Acc parameterized values| environment
 deploy --> |contains| prdStage(prd stage) -->|Prd parameterized values| environment
 ```
+
+This flowchart represents the YAML markup. Read this schema from left to right:
+1. deploy.yml is the Azure Pipeline which contains the various DTAP stages. It also loads the `deploy.vars.yml` which contains re-useable variables that can be used in the whole pipeline.
+2. The various stages in `deploy.yml`
+3. Each stage points to the `environments.yml` templates which need specific parameter inputs (environment, serviceConnectionName and resourceGroupName)
+4. In `environments.yml` the actual deployment to Azure takes place. Besides the deployment it is possible to set variables in runtime or do a search and replace for specific environment values.
