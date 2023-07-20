@@ -1,8 +1,6 @@
 parameters:
   - name: 'environment'
     type: string
-  - name: 'deploymentNumber'
-    type: string
   - name: 'serviceConnectionName'
     type: string
   - name: 'resourceGroupName'
